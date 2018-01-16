@@ -21,7 +21,7 @@ export interface ActionReducerFactory<T, V extends Action = Action> {
   ): ActionReducer<T, V>;
 }
 
-export type MetaReducer<T, V extends Action = Action> = (
+export type MetaReducer<T = any, V extends Action = Action> = (
   reducer: ActionReducer<T, V>
 ) => ActionReducer<T, V>;
 

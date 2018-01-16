@@ -127,31 +127,22 @@ export const getCollectionState = createSelector(
   (state: BooksState) => state.collection
 );
 
-export const getCollectionLoaded = createSelector(
-  getCollectionState,
-  fromCollection.getLoaded
-);
-export const getCollectionLoading = createSelector(
-  getCollectionState,
-  fromCollection.getLoading
-);
+export const getCollectionLoaded = () => true;
+export const getCollectionLoading = () => false;
 export const getCollectionBookIds = createSelector(
   getCollectionState,
-  fromCollection.getIds
+  fromCollection.selectIds
 );
 
 export const getBookCollection = createSelector(
-  getBookEntities,
-  getCollectionBookIds,
-  (entities, ids) => {
-    return ids.map(id => entities[id]);
-  }
+  getCollectionState,
+  fromCollection.selectAll
 );
 
 export const isSelectedBookInCollection = createSelector(
   getCollectionBookIds,
   getSelectedBookId,
   (ids, selected) => {
-    return ids.indexOf(selected) > -1;
+    return (ids as any).indexOf(selected) > -1;
   }
 );
