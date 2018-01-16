@@ -10,8 +10,6 @@ export interface State extends EntityState<Book> {}
 
 const adapter = createEntityAdapter({
   selectId: (book: Book) => book.id,
-  sortComparer: (a: Book, b: Book) =>
-    a.volumeInfo.title.localeCompare(b.volumeInfo.title),
 });
 
 const initialState: State = adapter.getInitialState();
